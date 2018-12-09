@@ -1,16 +1,34 @@
-module.exports = function mathService(options) {
-  console.log('seneca!!!');
-  this.add('role:math,cmd:sum', function(msg, respond) {
-    respond(null, { answer: msg.left + msg.right });
+module.exports = function api(options) {
+  var valid_ops = { sum: 'sum', product: 'product' };
+
+  this.add('role:api,path:calculate', function(msg, respond) {
+    var operation = msg.args.params.operation;
+    var left = msg.args.query.left;
+    var right = msg.args.query.right;
+    this.act(
+      'role:math',
+      {
+        cmd: valid_ops[operation],
+        left: left,
+        right: right
+      },
+      respond
+    );
   });
 
-  this.add('role:math,cmd:product', function(msg, respond) {
-    respond(null, { answer: msg.left * msg.right });
-  });
-
-  this.wrap('role:math', function(msg, respond) {
-    msg.left = Number(msg.left).valueOf();
-    msg.right = Number(msg.right).valueOf();
-    this.prior(msg, respond);
+  this.add('init:api', function(msg, respond) {
+    this.act(
+      'role:web',
+      {
+        routes: {
+          prefix: '/api',
+          pin: 'role:api,path:*',
+          map: {
+            calculate: { GET: true, suffix: '/:operation' }
+          }
+        }
+      },
+      respond
+    );
   });
 };
