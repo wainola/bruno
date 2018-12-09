@@ -1,5 +1,4 @@
-const p = require('domain');
-
-const d = {
-  poto: 'caca'
-};
+const mathService = require('./services/auth');
+require('seneca')()
+  .use(mathService)
+  .listen();

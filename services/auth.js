@@ -1,17 +1,16 @@
-const seneca = require('seneca')();
+module.exports = function mathService(options) {
+  console.log('seneca!!!');
+  this.add('role:math,cmd:sum', function(msg, respond) {
+    respond(null, { answer: msg.left + msg.right });
+  });
 
-// MICROSERVICES THAT MAKES SOME MATH OPERATIONS
-seneca.add({ role: 'math', cmd: 'sum' }, (msg, reply) => {
-  console.log('sum');
-  reply(null, { answer: msg.left + msg.right });
-});
+  this.add('role:math,cmd:product', function(msg, respond) {
+    respond(null, { answer: msg.left * msg.right });
+  });
 
-seneca.add({ role: 'math', cmd: 'product' }, (msg, respond) => {
-  console.log('product');
-  const product = msg.left * msg.right;
-  respond(null, { answer: product });
-});
-
-seneca
-  .act({ role: 'math', cmd: 'sum', left: 1, right: 3 }, console.log)
-  .act({ role: 'math', cmd: 'product', left: 3, right: 4 }, console.log);
+  this.wrap('role:math', function(msg, respond) {
+    msg.left = Number(msg.left).valueOf();
+    msg.right = Number(msg.right).valueOf();
+    this.prior(msg, respond);
+  });
+};
