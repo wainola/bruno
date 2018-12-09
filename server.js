@@ -1,21 +1,18 @@
-var SenecaWeb = require('seneca-web');
-var Express = require('express');
-var Router = Express.Router;
-var context = new Router();
-const api = require('./services/auth');
+const express = require('express');
+const bodyParser = require('body-parser');
+const fetch = require('node-fetch');
 
-var senecaWebConfig = {
-  context: context,
-  adapter: require('seneca-web-adapter-express'),
-  options: { parseBody: false } // so we can use body-parser
-};
+const app = express();
 
-var app = Express()
-  .use(require('body-parser').json())
-  .use(context)
-  .listen(3000);
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-var seneca = require('seneca')()
-  .use(SenecaWeb, senecaWebConfig)
-  .use(api)
-  .client({ type: 'tcp', pin: 'role:math' });
+app.get('/auth', async (request, response) => {
+  const dataAuth = await fetch('http://localhost:3000/service/auth');
+  const responseToSend = await dataAuth.json();
+  return response.status(200).send({ msg: responseToSend });
+});
+
+app.listen(9000, () => {
+  console.log('api listening on port 9000');
+});

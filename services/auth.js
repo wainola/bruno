@@ -1,34 +1,19 @@
-module.exports = function api(options) {
-  var valid_ops = { sum: 'sum', product: 'product' };
+const express = require('express');
+const bodyParser = require('body-parser');
+const app = express();
 
-  this.add('role:api,path:calculate', function(msg, respond) {
-    var operation = msg.args.params.operation;
-    var left = msg.args.query.left;
-    var right = msg.args.query.right;
-    this.act(
-      'role:math',
-      {
-        cmd: valid_ops[operation],
-        left: left,
-        right: right
-      },
-      respond
-    );
-  });
-
-  this.add('init:api', function(msg, respond) {
-    this.act(
-      'role:web',
-      {
-        routes: {
-          prefix: '/api',
-          pin: 'role:api,path:*',
-          map: {
-            calculate: { GET: true, suffix: '/:operation' }
-          }
-        }
-      },
-      respond
-    );
-  });
+const auth = async (request, response) => {
+  console.log('auth services');
+  const data = 'nicolas riquelme';
+  console.log('data to send', data);
+  return response.send(JSON.stringify({ dataToSend: data }));
 };
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.get('/service/auth', auth);
+
+app.listen(3000, () => {
+  console.log('auth service listening on port 3000');
+});
