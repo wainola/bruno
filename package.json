@@ -14,12 +14,7 @@
     "concurrently": "^4.1.0",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
-    "moleculer": "^0.13.5",
     "node-fetch": "^2.3.0",
-    "pm2": "^3.2.2",
-    "seneca": "^3.7.0",
-    "seneca-web": "^2.2.1",
-    "seneca-web-adapter-express": "^1.1.2",
     "sequelize": "^4.41.2"
   },
   "devDependencies": {

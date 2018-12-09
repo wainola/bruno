@@ -3,9 +3,7 @@ const bodyParser = require('body-parser');
 const app = express();
 
 const auth = async (request, response) => {
-  console.log('auth services');
   const data = 'nicolas riquelme';
-  console.log('data to send', data);
   return response.send(JSON.stringify({ dataToSend: data }));
 };
 
