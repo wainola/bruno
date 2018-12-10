@@ -20,4 +20,4 @@ services:
     volumes:
       - .:/usr/server
     environment:
-      - DATABASE_URL=postgres://postgres:password@db/bruno_db
+      - DATABASE_URL=postgres://postgres:password@bruno_db/bruno_db
