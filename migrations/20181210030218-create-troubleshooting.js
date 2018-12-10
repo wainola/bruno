@@ -11,7 +11,7 @@ module.exports = {
       flight_code: {
         type: Sequelize.STRING
       },
-      user: {
+      username: {
         type: Sequelize.STRING
       },
       info: {

@@ -36,7 +36,9 @@ app.get('/auth', async (request, response) => {
 app.post('/api/v1/create-ticket', (request, response) =>
   TicketHandler.createTicket(request, response, sequelize)
 );
-app.post('/api/v1/troubleshooting', TroubleshootingHandler.postTroubleshooting);
+app.post('/api/v1/troubleshooting', (request, response) =>
+  TroubleshootingHandler.postTroubleshooting(request, response, sequelize)
+);
 
 app.listen(9000, () => {
   console.log('api listening on port 9000');
