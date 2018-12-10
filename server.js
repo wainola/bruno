@@ -14,6 +14,11 @@ sequelize
   .then(() => console.log('Success connection to the database'))
   .catch(err => console.log('err::', err));
 
+sequelize
+  .query('select now()')
+  .then(r => console.log(r))
+  .catch(e => console.log(e));
+
 const TroubleshootingHandler = require('./handlers/troubleshooting');
 const TicketHandler = require('./handlers/ticket');
 
@@ -28,13 +33,18 @@ app.get('/auth', async (request, response) => {
   return response.status(200).send({ msg: responseToSend });
 });
 
-app.post('/api/v1/create-ticket', TicketHandler.createTicket);
+app.post('/api/v1/create-ticket', (request, response) =>
+  TicketHandler.createTicket(request, response, sequelize)
+);
 app.post('/api/v1/troubleshooting', TroubleshootingHandler.postTroubleshooting);
 
 app.listen(9000, () => {
   console.log('api listening on port 9000');
 });
 
-module.exports = {
-  sequelize
+const db = {
+  sequelize,
+  Sequelize
 };
+
+module.exports = db;
