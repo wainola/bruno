@@ -1,0 +1,23 @@
+version: '2.3'
+services:
+  bruno_db:
+    image: postgres
+    container_name: bruno_db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=bruno_db
+  bruno_app:
+    container_name: bruno_app
+    depends_on:
+      - bruno_db
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: 'npm run dev'
+    ports:
+      - '9000:9000'
+    volumes:
+      - .:/usr/server
+    environment:
+      - DATABASE_URL=postgres://postgres:password@db/bruno_db
