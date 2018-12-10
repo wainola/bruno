@@ -1,17 +1,17 @@
-const seneca = require('seneca')();
+const express = require('express');
+const bodyParser = require('body-parser');
+const app = express();
 
-// MICROSERVICES THAT MAKES SOME MATH OPERATIONS
-seneca.add({ role: 'math', cmd: 'sum' }, (msg, reply) => {
-  console.log('sum');
-  reply(null, { answer: msg.left + msg.right });
+const auth = async (request, response) => {
+  const data = 'nicolas riquelme';
+  return response.send(JSON.stringify({ dataToSend: data }));
+};
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.get('/service/auth', auth);
+
+app.listen(3000, () => {
+  console.log('auth service listening on port 3000');
 });
-
-seneca.add({ role: 'math', cmd: 'product' }, (msg, respond) => {
-  console.log('product');
-  const product = msg.left * msg.right;
-  respond(null, { answer: product });
-});
-
-seneca
-  .act({ role: 'math', cmd: 'sum', left: 1, right: 3 }, console.log)
-  .act({ role: 'math', cmd: 'product', left: 3, right: 4 }, console.log);

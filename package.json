@@ -4,15 +4,21 @@
   "description": "simple airline ticket resolver using Express, Sequelize and Seneca",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha",
+    "dev": "concurrently --kill-others \"nodemon server.js\" \"nodemon ./services/auth.js\""
   },
   "author": "Nicolás Riquelme Guzmán",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.18.3",
+    "concurrently": "^4.1.0",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
-    "seneca": "^3.7.0",
-    "sequelize": "^4.41.2"
+    "joi": "^14.3.0",
+    "node-fetch": "^2.3.0",
+    "pg": "^7.7.1",
+    "sequelize": "^4.41.2",
+    "sequelize-cli": "^5.4.0"
   },
   "devDependencies": {
     "chai": "^4.2.0",
@@ -25,6 +31,7 @@
     "eslint-plugin-prettier": "^3.0.0",
     "eslint-plugin-react": "^7.11.1",
     "mocha": "^5.2.0",
+    "nodemon": "^1.18.7",
     "prettier": "^1.15.3"
   }
 }
