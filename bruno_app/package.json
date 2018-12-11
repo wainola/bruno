@@ -1,0 +1,37 @@
+{
+  "name": "bruno",
+  "version": "1.0.0",
+  "description": "simple airline ticket resolver using Express, Sequelize and Seneca",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha ./tests/*.test.js --watch",
+    "dev": "nodemon server.js"
+  },
+  "author": "Nicolás Riquelme Guzmán",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "concurrently": "^4.1.0",
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "node-fetch": "^2.3.0",
+    "pg": "^7.7.1",
+    "sequelize": "^4.41.2",
+    "sequelize-cli": "^5.4.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "eslint": "^5.10.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-config-prettier": "^3.3.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-prettier": "^3.0.0",
+    "eslint-plugin-react": "^7.11.1",
+    "mocha": "^5.2.0",
+    "nock": "^10.0.4",
+    "nodemon": "^1.18.7",
+    "prettier": "^1.15.3"
+  }
+}
