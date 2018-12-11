@@ -11,7 +11,6 @@ class Troubleshooting {
       const queryExec = await sequelize.query(insertIntoTroubleshootings, {
         replacements: valuesToInsert
       });
-      console.log(queryExec);
       if (Array.isArray(queryExec)) {
         const reply = {
           ...queryExec[0][0],
