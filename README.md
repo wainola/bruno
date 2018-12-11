@@ -18,3 +18,10 @@ La aplicación utiliza las siguientes dependencias no exigidas:
 - **node-fetch**: se utiliza tanto para testear endpoints como para comunicarse con el microservicio.
 - **nock**: se utiliza para testear endpoints de la aplicación.
 - **nodemon**: se utiliza para tener un hot-reloading de la aplicación en tiempo real.
+
+## Estado de las tareas por programar.
+
+- el microservicio no se encuentra terminado.
+- la estrategia de autenticación JWT no se encuentra implementada en la aplicación.
+- no es posible cambiar los estados de los tickets siendo usuario administrador.
+- el endpoint que recibe mayor información para los tickets no esta implementado. Tampoco el modelo es capaz de recepcionar en uno de sus atributos mayor informacion como campo opcional, a la creación de tickets ya expuesta por el endpoint.
