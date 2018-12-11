@@ -1,3 +1,4 @@
+const fetch = require('node-fetch');
 class UserHandler {
   static async register(request, response, sequelize) {
     const { user } = request.body;
@@ -11,6 +12,25 @@ class UserHandler {
     } catch (e) {
       console.log('E:::', e);
       return response.status(500).send(false);
+    }
+  }
+
+  static async registerAdmin(request, response, sequelize) {
+    const { user } = request.body;
+    try {
+      const res = await fetch('http://localhost:3000/service/auth', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(user)
+      });
+      const toJson = await res.json();
+      console.log('toJson', toJson);
+      return response.send({ admin: toJson });
+    } catch (e) {
+      console.log('E:::', e);
+      return response.send(500).send(false);
     }
   }
 }
