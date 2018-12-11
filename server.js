@@ -21,6 +21,7 @@ sequelize
 
 const TroubleshootingHandler = require('./handlers/troubleshooting');
 const TicketHandler = require('./handlers/ticket');
+const UserHandler = require('./handlers/user');
 
 const app = express();
 
@@ -32,6 +33,7 @@ app.get('/auth', async (request, response) => {
   const responseToSend = await dataAuth.json();
   return response.status(200).send({ msg: responseToSend });
 });
+
 app.post('/api/v1/register', (request, response) =>
   UserHandler.register(request, response, sequelize)
 );
