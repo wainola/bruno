@@ -11,6 +11,14 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
-    "express": "^4.16.4"
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "pg": "^7.7.1",
+    "sequelize": "^4.41.2",
+    "sequelize-cli": "^5.4.0"
+  },
+  "devDependencies": {
+    "jest": "^23.6.0",
+    "nock": "^10.0.4"
   }
 }
