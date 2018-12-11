@@ -48,10 +48,3 @@ app.post('/api/v1/troubleshooting', (request, response) =>
 app.listen(9000, () => {
   console.log('api listening on port 9000');
 });
-
-const db = {
-  sequelize,
-  Sequelize
-};
-
-module.exports = db;
