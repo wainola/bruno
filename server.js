@@ -32,6 +32,9 @@ app.get('/auth', async (request, response) => {
   const responseToSend = await dataAuth.json();
   return response.status(200).send({ msg: responseToSend });
 });
+app.post('/api/v1/register', (request, response) =>
+  UserHandler.register(request, response, sequelize)
+);
 
 app.post('/api/v1/create-ticket', (request, response) =>
   TicketHandler.createTicket(request, response, sequelize)
