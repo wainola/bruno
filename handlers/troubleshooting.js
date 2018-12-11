@@ -1,17 +1,28 @@
 class Troubleshooting {
   static async postTroubleshooting(request, response, sequelize) {
     const { troubleshooting } = request.body;
-    const insertIntoTroubleshootings = `INSERT INTO troubleshootings (flight_code, username, info) VALUES (?,?,?) RETURNING *`;
+    const insertIntoTroubleshootings = `INSERT INTO troubleshootings (flight_code, username, info, state) VALUES (?,?,?,?) RETURNING *`;
     const valuesToInsert = [
       troubleshooting.flight_code,
       troubleshooting.user,
-      troubleshooting.info
+      troubleshooting.info,
+      'PENDING'
     ];
     try {
       const queryExec = await sequelize.query(insertIntoTroubleshootings, {
         replacements: valuesToInsert
       });
-      return response.status(200).send({ resultQuery: queryExec });
+      if (Array.isArray(queryExec)) {
+        const reply = {
+          ...queryExec[0][0],
+          ticketCode: (Math.random() * 8)
+            .toString(36)
+            .split('.')
+            .join('')
+        };
+        return response.status(200).send({ ticket: reply });
+      }
+      return response.status(204).send({ ticket: {} });
     } catch (e) {
       console.log('E:::', e);
       return response.status(500).send(false);

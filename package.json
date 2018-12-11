@@ -4,7 +4,7 @@
   "description": "simple airline ticket resolver using Express, Sequelize and Seneca",
   "main": "server.js",
   "scripts": {
-    "test": "mocha",
+    "test": "mocha ./tests/*.test.js --watch",
     "dev": "concurrently --kill-others \"nodemon server.js\" \"nodemon ./services/auth.js\""
   },
   "author": "Nicolás Riquelme Guzmán",
@@ -31,6 +31,7 @@
     "eslint-plugin-prettier": "^3.0.0",
     "eslint-plugin-react": "^7.11.1",
     "mocha": "^5.2.0",
+    "nock": "^10.0.4",
     "nodemon": "^1.18.7",
     "prettier": "^1.15.3"
   }
