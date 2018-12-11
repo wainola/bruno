@@ -15,6 +15,18 @@ const sendMockingTicket = () => ({
   }
 });
 
+const sendMockingUser = () => ({
+  id: Math.random()
+    .toString(36)
+    .split('.')
+    .join(''),
+  name: 'John',
+  lastname: 'Doe',
+  role: 'user',
+  age: '33'
+});
+
 module.exports = {
-  sendMockingTicket
+  sendMockingTicket,
+  sendMockingUser
 };

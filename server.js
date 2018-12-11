@@ -14,13 +14,9 @@ sequelize
   .then(() => console.log('Success connection to the database'))
   .catch(err => console.log('err::', err));
 
-sequelize
-  .query('select now()')
-  .then(r => console.log(r))
-  .catch(e => console.log(e));
-
 const TroubleshootingHandler = require('./handlers/troubleshooting');
 const TicketHandler = require('./handlers/ticket');
+const UserHandler = require('./handlers/user');
 
 const app = express();
 
@@ -33,9 +29,18 @@ app.get('/auth', async (request, response) => {
   return response.status(200).send({ msg: responseToSend });
 });
 
+app.post('/api/v1/register', (request, response) =>
+  UserHandler.register(request, response, sequelize)
+);
+
+app.post('/api/v1/register-admin', (request, response) =>
+  UserHandler.registerAdmin(request, response, sequelize)
+);
+
 app.post('/api/v1/create-ticket', (request, response) =>
   TicketHandler.createTicket(request, response, sequelize)
 );
+
 app.post('/api/v1/troubleshooting', (request, response) =>
   TroubleshootingHandler.postTroubleshooting(request, response, sequelize)
 );
