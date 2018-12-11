@@ -13,6 +13,7 @@ describe('Troubleshooting handler', () => {
       'flight_code',
       'username',
       'info',
+      'state',
       'ticketCode'
     ];
     nock('http://localhost:9000')

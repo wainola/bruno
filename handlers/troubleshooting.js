@@ -1,11 +1,12 @@
 class Troubleshooting {
   static async postTroubleshooting(request, response, sequelize) {
     const { troubleshooting } = request.body;
-    const insertIntoTroubleshootings = `INSERT INTO troubleshootings (flight_code, username, info) VALUES (?,?,?) RETURNING *`;
+    const insertIntoTroubleshootings = `INSERT INTO troubleshootings (flight_code, username, info, state) VALUES (?,?,?,?) RETURNING *`;
     const valuesToInsert = [
       troubleshooting.flight_code,
       troubleshooting.user,
-      troubleshooting.info
+      troubleshooting.info,
+      'PENDING'
     ];
     try {
       const queryExec = await sequelize.query(insertIntoTroubleshootings, {
