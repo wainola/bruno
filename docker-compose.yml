@@ -1,4 +1,4 @@
-version: "2.3"
+version: '2.3'
 services:
   bruno_db:
     image: postgres
@@ -14,9 +14,9 @@ services:
     build:
       context: bruno_app
       dockerfile: ./Dockerfile
-    command: "npm run dev"
+    command: 'npm run dev'
     ports:
-      - "9000:9000"
+      - '9000:9000'
     volumes:
       - ./bruno_app:/usr/server
     environment:
@@ -26,8 +26,10 @@ services:
     build:
       context: services
       dockerfile: ./Dockerfile
-    command: "npm run dev"
+    command: 'npm run dev'
     ports:
-      - "3000:3000"
+      - '3000:3000'
     volumes:
       - ./services:/usr/services
+    environment:
+      - DATABASE_URL=postgres://postgres:password@bruno_db/bruno_db

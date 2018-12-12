@@ -2,15 +2,16 @@
   "name": "services",
   "version": "1.0.0",
   "description": "",
-  "main": "auth.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon auth.js"
+    "dev": "nodemon server.js"
   },
   "author": "Nicolás Riquelme",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
     "pg": "^7.7.1",
