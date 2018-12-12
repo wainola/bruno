@@ -30,21 +30,9 @@ app.get('/test', (request, response) =>
   response.status(200).send({ status: 'ok' })
 );
 
-app.get('/test-service', (request, response) => {
-  console.log('testing service connection:::::');
-  fetch('http://auth_service/service/test')
-    .then(response => response.json())
-    .then(d => response.send(d))
-    .catch(e => response.send(e));
-});
+app.get('/test-service', AuthHandler.testRequestToService);
 
-// app.post('/auth', async (request, response) =>
-//   AuthHandler.sendRequestToService(request, response)
-// );
-
-app.get('/auth', (request, response) =>
-  AuthHandler.sendRequestToService(request, response)
-);
+app.post('/auth', AuthHandler.sendRequestToService);
 
 app.post('/api/v1/register', (request, response) =>
   UserHandler.register(request, response, sequelize)

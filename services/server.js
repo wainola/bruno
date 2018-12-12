@@ -19,7 +19,7 @@ sequelize
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/service/test', (request, response) => {
+app.get('/test-service', (request, response) => {
   console.log('punch to the service !!!!');
   return response.status(200).send({ msg: 'Service is alive!' });
 });

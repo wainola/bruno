@@ -21,6 +21,7 @@ services:
       - ./bruno_app:/usr/server
     environment:
       - DATABASE_URL=postgres://postgres:password@bruno_db/bruno_db
+      - SERVICE_URL=http://auth_service:3000
   auth_services:
     container_name: auth_service
     build:
