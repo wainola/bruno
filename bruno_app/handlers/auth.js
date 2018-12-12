@@ -15,9 +15,13 @@ class AuthHandler {
   }
 
   static async sendRequestToService(request, response) {
-    console.log('sendRequestToService::', SERVICE_URL);
+    const { body } = request;
+    console.log('sendRequestToService::', body);
     try {
-      const sendData = await fetch(`http://auth_service:3000/test`);
+      const sendData = await fetch(`${SERVICE_URL}/service-auth`, {
+        method: 'POST',
+        body: JSON.stringify(body)
+      });
       const data = await sendData.json();
       console.log(data);
       return response.send(data);

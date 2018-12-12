@@ -27,7 +27,7 @@ app.get('/test-service', (request, response) => {
 app.get('/test', (request, response) =>
   response.status(200).send({ test: "I'm alive! " })
 );
-app.post('/service/auth', (request, response) =>
+app.post('/service-auth', (request, response) =>
   AuthHandler.authenticate(request, response, sequelize)
 );
 
