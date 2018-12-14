@@ -5,7 +5,15 @@
   "main": "server.js",
   "scripts": {
     "test": "mocha ./tests/*.test.js --watch",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "setup_db": "node_modules/.bin/sequelize db:migrate",
+    "db_rollback": "node_modules/.bin/sequelize db:migrate:undo:all",
+    "compose_up": "docker-compose up -d",
+    "compose_down": "docker-compose down",
+    "bruno_bash": "docker exec -it bruno_app bash",
+    "auth_bash": "docker exec -it auth_service bash",
+    "psql": "docker exec -it bruno_db psql -U postgres -d bruno_db",
+    "logs": "docker-compose logs -f"
   },
   "author": "Nicolás Riquelme Guzmán",
   "license": "ISC",
