@@ -5,13 +5,14 @@
   "main": "server.js",
   "scripts": {
     "test": "mocha ./tests/*.test.js --watch",
-    "dev": "concurrently --kill-others \"nodemon server.js\" \"nodemon ./services/auth.js\""
+    "dev": "nodemon server.js"
   },
   "author": "Nicolás Riquelme Guzmán",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
     "concurrently": "^4.1.0",
+    "cors": "^2.8.5",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
     "node-fetch": "^2.3.0",

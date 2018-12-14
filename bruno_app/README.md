@@ -10,19 +10,6 @@ Para correr las migraciones sobre el contenedor de persistencia es necesario ing
 
 Para ejecutar los test es necesario correr `npm run test`. Esto es posible hacerlo afuera del contenedor.
 
-Para que los servicios puedan comunicarse es necesario modificar el archivo hosts:
-
-```
-sudo /etc/hosts
-```
-
-Y mapear lo siguiente:
-
-```
-127.0.0.1 bruno_app
-127.0.0.1 auth_service
-```
-
 ## Dependencias extras utilizadas.
 
 La aplicación utiliza las siguientes dependencias no exigidas:

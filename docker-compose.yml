@@ -12,12 +12,25 @@ services:
     depends_on:
       - bruno_db
     build:
-      context: .
-      dockerfile: Dockerfile
+      context: bruno_app
+      dockerfile: ./Dockerfile
     command: 'npm run dev'
     ports:
       - '9000:9000'
     volumes:
-      - .:/usr/server
+      - ./bruno_app:/usr/server
+    environment:
+      - DATABASE_URL=postgres://postgres:password@bruno_db/bruno_db
+      - SERVICE_URL=http://auth_service:3000
+  auth_services:
+    container_name: auth_service
+    build:
+      context: services
+      dockerfile: ./Dockerfile
+    command: 'npm run dev'
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./services:/usr/services
     environment:
       - DATABASE_URL=postgres://postgres:password@bruno_db/bruno_db
