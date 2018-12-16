@@ -11,7 +11,7 @@
             "name": "string",
             "lastname": "string",
             "age": "int",
-            "role": "string",At:
+            "role": "string",
             "createdAt": "timestamp",
             "updatedAt": "timestamp",
             "deletedAt": "timestamp"

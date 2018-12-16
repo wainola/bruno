@@ -16,6 +16,7 @@ describe('User handler', () => {
     });
 
     const toJson = await response.json();
+    console.log('toJson bruno app', toJson);
     const keys = Object.keys(toJson);
     expect(keys).to.eql(expectedKeys);
   });
