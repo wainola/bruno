@@ -1,9 +1,7 @@
 class AuthHandler {
-  static async authenticate(request, response, sequelize) {
-    console.log('request.body', response);
-    return response
-      .status(200)
-      .send({ auth: true, msg: 'you hit the auth endpoint' });
+  static async authenticate(body) {
+    console.log('request.body', body);
+    // we generate the jwt token, and we send back to the user
   }
 }
 

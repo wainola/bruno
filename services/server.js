@@ -4,11 +4,11 @@ const bodyParser = require('body-parser');
 const Sequelize = require('sequelize');
 const app = express();
 
+const Router = require('./routes/index');
+
 const { DATABASE_URL } = process.env;
 
 const sequelize = new Sequelize(DATABASE_URL);
-
-const AuthHandler = require('./handlers/auth');
 
 // Testing the connection
 sequelize
@@ -19,17 +19,9 @@ sequelize
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/test-service', (request, response) => {
-  console.log('punch to the service !!!!');
-  return response.status(200).send({ msg: 'Service is alive!' });
-});
+app.get('/test-service', Router.testService);
 
-app.get('/test', (request, response) =>
-  response.status(200).send({ test: "I'm alive! " })
-);
-app.post('/service-auth', (request, response) =>
-  AuthHandler.authenticate(request, response, sequelize)
-);
+app.post('/service-auth', Router.authenticate);
 
 app.listen(3000, () => {
   console.log('auth service listening on port 3000');
